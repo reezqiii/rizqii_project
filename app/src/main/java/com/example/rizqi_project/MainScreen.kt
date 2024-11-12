@@ -29,7 +29,6 @@ import com.example.rizqi_project.data.DataProvider
 import com.example.rizqi_project.data.Food
 import com.example.rizqi_project.data.NavItem
 import com.example.rizqi_project.pages.AboutPage
-import com.example.rizqi_project.pages.ListPage
 import com.example.rizqi_project.pages.DetailPage
 import com.example.rizqi_project.ui.theme.Rizqi_ProjectTheme
 
@@ -57,7 +56,7 @@ fun MainScreen(modifier: Modifier = Modifier, navigateToProfile: (Food) -> Unit)
         NavItem("About", Icons.Default.Person, 0)
     )
 
-    var selectedIndex by remember { mutableStateOf(0) }
+    var selectedIndex by remember { mutableIntStateOf(0) }
     val navController = rememberNavController()
     val barColor = Color(0xFFD0DD97)
     var searchQuery by remember { mutableStateOf("") }
@@ -265,7 +264,7 @@ fun ListPage(modifier: Modifier = Modifier, searchQuery: String, navigateToProfi
             items(filteredFoodList.take(10)) { food ->
                 FoodListItemForListPage(
                     food = food,
-                    navigateToProfile = navigateToProfile  
+                    navigateToProfile = navigateToProfile
                 )
             }
         }
