@@ -62,7 +62,7 @@ fun DetailPage(food: Food, navController: NavController, modifier: Modifier = Mo
                     .fillMaxHeight()
                     .shadow(4.dp, shape = RoundedCornerShape(16.dp)),
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White)
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFDBE9B7)) // Ubah warna card di sini
             ) {
                 Column(
                     modifier = Modifier
