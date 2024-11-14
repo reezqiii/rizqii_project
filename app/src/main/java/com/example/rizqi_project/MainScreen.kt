@@ -188,7 +188,7 @@ fun SearchBar(
             .fillMaxWidth()
             .height(50.dp)
             .background(
-                color = Color(0xFFF5F5F5),
+                color = Color.White,
                 shape = RoundedCornerShape(20.dp)
             )
             .padding(horizontal = 16.dp),
@@ -200,7 +200,9 @@ fun SearchBar(
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent,
-            cursorColor = Color(0xFF888888)
+            cursorColor = Color(0xFF888888),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent
         )
     )
 }
@@ -212,33 +214,21 @@ fun HomePage(modifier: Modifier = Modifier, searchQuery: String, navigateToProfi
     }
 
     Column(modifier = modifier.fillMaxSize()) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color(0xFFFBFBFB))
+        LazyRow(
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.fillMaxWidth()
         ) {
-            LazyRow(
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                items(filteredFoodList.take(10)) { food ->
-                    FoodListItemForHomePage(food = food, navigateToProfile = navigateToProfile)
-                }
+            items(filteredFoodList.take(10)) { food ->
+                FoodListItemForHomePage(food = food, navigateToProfile = navigateToProfile)
             }
         }
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color(0xFFFBFBFB))
+        LazyColumn(
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+            modifier = Modifier.fillMaxWidth()
         ) {
-            LazyColumn(
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                items(filteredFoodList.take(10)) { food ->
-                    FoodListItemForHomePage(food = food, navigateToProfile = navigateToProfile)
-                }
+            items(filteredFoodList.take(10)) { food ->
+                FoodListItemForHomePage(food = food, navigateToProfile = navigateToProfile)
             }
         }
     }
@@ -249,24 +239,19 @@ fun ListPage(modifier: Modifier = Modifier, searchQuery: String, navigateToProfi
     val filteredFoodList = DataProvider.foodList.filter {
         it.name.contains(searchQuery, ignoreCase = true)
     }
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(Color(0xFFFBFBFB))
+
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(minSize = 150.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier.fillMaxSize()
     ) {
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 150.dp),
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.fillMaxSize()
-        ) {
-            items(filteredFoodList.take(10)) { food ->
-                FoodListItemForListPage(
-                    food = food,
-                    navigateToProfile = navigateToProfile
-                )
-            }
+        items(filteredFoodList.take(10)) { food ->
+            FoodListItemForListPage(
+                food = food,
+                navigateToProfile = navigateToProfile
+            )
         }
     }
 }
