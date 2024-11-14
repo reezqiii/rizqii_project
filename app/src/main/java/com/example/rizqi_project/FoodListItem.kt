@@ -26,6 +26,7 @@ import com.example.rizqi_project.data.Food
 @Composable
 fun FoodListItemForHomePage(food: Food, navigateToProfile: (Food) -> Unit) {
     Card(
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFF6FAF7)),
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)
             .fillMaxWidth()
@@ -55,6 +56,7 @@ fun FoodListItemForHomePage(food: Food, navigateToProfile: (Food) -> Unit) {
 @Composable
 fun FoodListItemForListPage(food: Food, navigateToProfile: (Food) -> Unit) {
     Card(
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFF6FAF7)),
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()

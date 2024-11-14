@@ -52,13 +52,13 @@ class MainScreenActivity : ComponentActivity() {
 fun MainScreen(modifier: Modifier = Modifier, navigateToProfile: (Food) -> Unit) {
     val navItemList = listOf(
         NavItem("Home", Icons.Default.Home, 0),
-        NavItem("List", Icons.Default.Menu, 0),
-        NavItem("About", Icons.Default.Person, 0)
+        NavItem("Menu", Icons.Default.Menu, 0),
+        NavItem("Profile", Icons.Default.Person, 0)
     )
 
     var selectedIndex by remember { mutableIntStateOf(0) }
     val navController = rememberNavController()
-    val barColor = Color(0xFFD0DD97)
+    val barColor = Color(0xFFB4BB72)
     var searchQuery by remember { mutableStateOf("") }
     val currentBackStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = currentBackStackEntry.value?.destination?.route
@@ -125,36 +125,42 @@ fun MainScreen(modifier: Modifier = Modifier, navigateToProfile: (Food) -> Unit)
             }
         },
         content = { innerPadding ->
-            NavHost(
-                navController = navController,
-                startDestination = "home",
-                modifier = modifier.padding(innerPadding)
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xFFFBFBFB))
+                    .padding(innerPadding)
             ) {
-                composable("home") {
-                    HomePage(
-                        modifier = modifier,
-                        searchQuery = searchQuery,
-                        navigateToProfile = { food ->
-                            navController.navigate("detail/${food.id}")
-                        }
-                    )
-                }
-                composable("list") {
-                    ListPage(
-                        modifier = modifier,
-                        searchQuery = searchQuery,
-                        navigateToProfile = { food ->
-                            navController.navigate("detail/${food.id}")
-                        }
-                    )
-                }
-                composable("about") {
-                    AboutPage(modifier = modifier)
-                }
-                composable("detail/{foodId}") { backStackEntry ->
-                    val foodId = backStackEntry.arguments?.getString("foodId")
-                    val food = DataProvider.foodList.first { it.id.toString() == foodId }
-                    DetailPage(food = food, navController = navController)
+                NavHost(
+                    navController = navController,
+                    startDestination = "home"
+                ) {
+                    composable("home") {
+                        HomePage(
+                            modifier = modifier.background(Color(0xFFFBFBFB)),
+                            searchQuery = searchQuery,
+                            navigateToProfile = { food ->
+                                navController.navigate("detail/${food.id}")
+                            }
+                        )
+                    }
+                    composable("list") {
+                        ListPage(
+                            modifier = modifier.background(Color(0xFFFBFBFB)),
+                            searchQuery = searchQuery,
+                            navigateToProfile = { food ->
+                                navController.navigate("detail/${food.id}")
+                            }
+                        )
+                    }
+                    composable("about") {
+                        AboutPage(modifier = modifier.background(Color(0xFFFBFBFB)))
+                    }
+                    composable("detail/{foodId}") { backStackEntry ->
+                        val foodId = backStackEntry.arguments?.getString("foodId")
+                        val food = DataProvider.foodList.first { it.id.toString() == foodId }
+                        DetailPage(food = food, navController = navController)
+                    }
                 }
             }
         }
@@ -217,7 +223,9 @@ fun HomePage(modifier: Modifier = Modifier, searchQuery: String, navigateToProfi
         LazyRow(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0xFFFBFBFB))
         ) {
             items(filteredFoodList.take(10)) { food ->
                 FoodListItemForHomePage(food = food, navigateToProfile = navigateToProfile)
@@ -225,7 +233,9 @@ fun HomePage(modifier: Modifier = Modifier, searchQuery: String, navigateToProfi
         }
         LazyColumn(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0xFFFBFBFB))
         ) {
             items(filteredFoodList.take(10)) { food ->
                 FoodListItemForHomePage(food = food, navigateToProfile = navigateToProfile)
@@ -245,7 +255,9 @@ fun ListPage(modifier: Modifier = Modifier, searchQuery: String, navigateToProfi
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFFBFBFB))
     ) {
         items(filteredFoodList.take(10)) { food ->
             FoodListItemForListPage(

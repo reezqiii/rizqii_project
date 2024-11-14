@@ -26,14 +26,14 @@ fun DetailPage(food: Food, navController: NavController, modifier: Modifier = Mo
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFBFBFB))
+            .background(Color(0xFFF6FAF7))
     ) {
         IconButton(
             onClick = { navController.popBackStack() },
             modifier = Modifier
                 .padding(16.dp)
                 .size(48.dp)
-                .background(Color(0xFFD0DD97), shape = CircleShape)
+                .background(Color(0xFFB4BB72), shape = CircleShape)
                 .align(Alignment.TopStart)
         ) {
             Icon(
@@ -62,7 +62,7 @@ fun DetailPage(food: Food, navController: NavController, modifier: Modifier = Mo
                     .fillMaxHeight()
                     .shadow(4.dp, shape = RoundedCornerShape(16.dp)),
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFDBE9B7)) // Ubah warna card di sini
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFF6FAF7))
             ) {
                 Column(
                     modifier = Modifier
