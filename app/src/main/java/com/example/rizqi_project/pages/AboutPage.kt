@@ -25,7 +25,7 @@ fun AboutPage(modifier: Modifier = Modifier) {
     val email = remember { mutableStateOf("velasyifa02@gmail.com") }
     val kampus = remember { mutableStateOf("Politeknik Negeri Batam") }
     val jurusan = remember { mutableStateOf("Teknik Informatika") }
-    val prodi = remember { mutableStateOf("Sistem Informasi") }
+    val prodi = remember { mutableStateOf("Teknik Informatika") }
     val scrollState = rememberScrollState()
 
     Box(
