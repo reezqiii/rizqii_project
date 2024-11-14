@@ -26,7 +26,7 @@ fun DetailPage(food: Food, navController: NavController, modifier: Modifier = Mo
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF6FAF7))
+            .background(Color(0xFFFBFBFB))
     ) {
         IconButton(
             onClick = { navController.popBackStack() },
